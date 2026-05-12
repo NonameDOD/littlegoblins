@@ -16,12 +16,12 @@
 # Egyéb funkciók
 ## chatbot, ezen belül elérhető GY.I.K, fordítás más nyelvekre
 
-> Snake_case
-> projektmanagement issuesban
-> draw.io UML
-> gitignore
-> drótváz readmeben
-> dokumentációk magyarul
-> kódon belül angol
+> - snake_case
+> - projektmanagement issuesban
+> - draw.io UML
+> - .gitignore
+> - drótváz README-ben
+> - dokumentációk magyarul
+> - kódon belül angol
 
 >> Fejlesztői dokumentáció külön kódból generált dolog
