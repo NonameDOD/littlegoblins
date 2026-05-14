@@ -1,5 +1,5 @@
-# Little Goblins Tenyészet 
-#Áttekintés:
+# Little Goblins Tenyészet
+# Áttekintés:
 ## navbar:
 ### Kezdőlap:
 - yapping és rólunk rész
@@ -12,10 +12,17 @@
 ### [Neko](https://github.com/crgimenes/neko) 
 
 ## Egyéb funkciók
-### fejlécben kapcsolat: facebook, messenger.
+### fejlécben mini navbar és kapcsolat: facebook, messenger.
 ### chatbot, ezen belül elérhető GY.I.K, fordítás más nyelvekre
 
-#Részletes leírás:
+# Részletes leírás:
+
+## Navbar 
+- bal oldalt alapból nem jelenik meg, ha az egér a képernyő bal oldalára visszük, akkor csúszik ki.
+- 2 gomb; Kezdőlap és Almokra
+- Neko ki és bekapcsolása
+- Chatbot bal alul
+
 ## Kezdőlap:
 - Statikus weboldal, információk a kennellel kapcsolatban.
 
@@ -26,8 +33,9 @@
 > - UML diagramok készítéséhez `draw.io`-t használunk.
 > - A repository tartalmaz `.gitignore` fájlt.
 > - A drótvázak a `README`-ben találhatóak.
-> - A projekt `dokumentáció`ja `magyar` nyelvű.
-> - A `forráskód`on belüli elnevezések és kommentek `angol` nyelvűek.
+> - A projekt `dokumentációja` `magyar` nyelvű.
+> - A `forráskódon` belüli elnevezések és kommentek `angol` nyelvűek.
+> - A `fájl és könyvtárstruktúra` elnevezései `angol` nyelvűek.
 
 # Fejlesztési konvenciók
 > - A változó, függvény és fájlnevek `snake_case` formátumot követnek.
