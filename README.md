@@ -25,8 +25,11 @@
 
 ## Kezdőlap:
 - Statikus weboldal, információk a kennellel kapcsolatban.
+![Kezdőlap drotváz](assets/wireframes/Kezdolap.png)
 
 ## Almok
+
+![Almok drotváz](assets/wireframes/Almok.png)
 
 # Projektirányelvek
 > - A projekt feladatok `issue`-ként kerülnek kezelésre.
@@ -42,7 +45,6 @@
 > - Osztálynevek `PascalCase`.
 > - Konstansok `nagybetűsek`.
 > - A kód formázásához `Prettier` használata kötelező.
-> - Egységes `commit message` formátum (megbeszélendő)
 > - Függvények egy felelősségi körrel rendelkezzenek.
 
 >> Fejlesztői dokumentáció külön kódból generált dolog
