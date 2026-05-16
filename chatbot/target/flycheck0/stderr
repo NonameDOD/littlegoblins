@@ -1,0 +1,8 @@
+   0.033412940s  INFO prepare_target{force=false package_id=chatbot v0.1.0 (/media/ADAT/Programok/html/littlegoblins/chatbot) target="chatbot"}: cargo::core::compiler::fingerprint: fingerprint dirty for chatbot v0.1.0 (/media/ADAT/Programok/html/littlegoblins/chatbot)/Check { test: false }/TargetInner { name_inferred: true, ..: lib_target("chatbot", ["lib"], "/media/ADAT/Programok/html/littlegoblins/chatbot/src/lib.rs", Edition2024) }
+   0.033432040s  INFO prepare_target{force=false package_id=chatbot v0.1.0 (/media/ADAT/Programok/html/littlegoblins/chatbot) target="chatbot"}: cargo::core::compiler::fingerprint:     dirty: NothingObvious
+   0.033588470s  INFO prepare_target{force=false package_id=chatbot v0.1.0 (/media/ADAT/Programok/html/littlegoblins/chatbot) target="chatbot"}: cargo::core::compiler::fingerprint: fingerprint dirty for chatbot v0.1.0 (/media/ADAT/Programok/html/littlegoblins/chatbot)/Check { test: true }/TargetInner { name_inferred: true, ..: lib_target("chatbot", ["lib"], "/media/ADAT/Programok/html/littlegoblins/chatbot/src/lib.rs", Edition2024) }
+   0.033595300s  INFO prepare_target{force=false package_id=chatbot v0.1.0 (/media/ADAT/Programok/html/littlegoblins/chatbot) target="chatbot"}: cargo::core::compiler::fingerprint:     dirty: NothingObvious
+    Checking chatbot v0.1.0 (/media/ADAT/Programok/html/littlegoblins/chatbot)
+error: could not compile `chatbot` (lib) due to 2 previous errors; 1 warning emitted
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `chatbot` (lib test) due to 2 previous errors; 1 warning emitted
