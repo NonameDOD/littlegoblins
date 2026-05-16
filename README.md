@@ -18,7 +18,6 @@
 # Részletes leírás:
 
 ## Navbar 
-- bal oldalt alapból nem jelenik meg, ha az egér a képernyő bal oldalára visszük, akkor csúszik ki.
 - 2 gomb; Kezdőlap és Almokra
 - Neko ki és bekapcsolása
 - Chatbot bal alul
