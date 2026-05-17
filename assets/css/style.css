@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: auto;
+  background-color: #def3fd;
+}
+
+article {
+  border: 1px dotted rgb(223, 69, 161);
+  background-color: rgb(255, 209, 220);
+  text-align: justify;
+  padding: 5px;
+  margin: 10px;
+  width: 100%;
+}
+
+header {
+  text-align: center;
+  border: 1px dotted pink;
+  background-color: rgb(193, 159, 164);
+}
+
+nav {
+  border: 1px dotted pink;
+}
