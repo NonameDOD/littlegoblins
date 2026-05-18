@@ -1,0 +1,1 @@
+std::result::Result<std::vec::Vec<knowledge_base::knowledge::Knowledge<10>>, std::string::String>

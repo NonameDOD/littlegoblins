@@ -1,2 +1,0 @@
-mod bot;
-mod chat;
