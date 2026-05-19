@@ -1,25 +1,9 @@
 # Little Goblins Tenyészet
-# Áttekintés:
-## navbar:
-### Kezdőlap:
-- yapping és rólunk rész
-
-### Almok:
-- fotógaléria elemei macska kártyák, amin név is van
-- képes a macska dorombolni, ha mozgásban van az egér.
-- fotógaléria felett egy memoriajáték jelenlegi alomról *(valamit tesztelni is kell)*
-
-### [Neko](https://github.com/crgimenes/neko) 
-
-## Egyéb funkciók
-### fejlécben mini navbar és kapcsolat: facebook, messenger.
-### chatbot, ezen belül elérhető GY.I.K, fordítás más nyelvekre
 
 # Részletes leírás:
 
 ## Navbar 
 - 2 gomb; Kezdőlap és Almokra
-- Neko ki és bekapcsolása
 - Chatbot bal alul
 
 ## Kezdőlap:
@@ -27,8 +11,18 @@
 ![Kezdőlap drotváz](assets/wireframes/Kezdolap.png)
 
 ## Almok
-
+- fotógaléria elemei macska kártyák, amin név is van
+- képes a macska dorombolni, ha mozgásban van az egér.
+- fotógaléria felett egy memoriajáték jelenlegi alomról
 ![Almok drotváz](assets/wireframes/Almok.png)
+
+## UML ábrák
+
+## Egyéb funkciók
+### fejlécben mini navbar és kapcsolat: facebook, messenger.
+### chatbot, ezen belül elérhető GY.I.K, fordítás más nyelvekre
+### [Neko](https://github.com/crgimenes/neko) 
+
 
 # Projektirányelvek
 > - A projekt feladatok `issue`-ként kerülnek kezelésre.
