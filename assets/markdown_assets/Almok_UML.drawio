@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="_xscs1X6nMGcG1fACsQx" name="Oldal-1">
+    <mxGraphModel dx="1414" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Helvetica;fontSize=14;" value="Gallery" vertex="1">
+          <mxGeometry height="200" width="320" x="100" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontFamily=Courier New;fontSize=12;" value="- #lista: Array" vertex="1">
+          <mxGeometry height="30" width="320" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontFamily=Courier New;fontSize=12;" value="+ parentElement: HTMLElement" vertex="1">
+          <mxGeometry height="30" width="320" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="2" style="line;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="10" width="320" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontFamily=Courier New;fontSize=12;" value="+ constructor(lista: Array,&#xa;parentElement: HTMLElement): void" vertex="1">
+          <mxGeometry height="40" width="320" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontFamily=Courier New;fontSize=12;" value="+ render(): void" vertex="1">
+          <mxGeometry height="30" width="320" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Helvetica;fontSize=14;" value="Cat_Card" vertex="1">
+          <mxGeometry height="230" width="360" x="600" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontFamily=Courier New;fontSize=12;" value="- #obj: { name: string, url: string }" vertex="1">
+          <mxGeometry height="30" width="360" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontFamily=Courier New;fontSize=12;" value="- #index: number" vertex="1">
+          <mxGeometry height="30" width="360" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontFamily=Courier New;fontSize=12;" value="+ parentElement: HTMLElement" vertex="1">
+          <mxGeometry height="30" width="360" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="8" style="line;strokeColor=#82b366;" value="" vertex="1">
+          <mxGeometry height="10" width="360" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontFamily=Courier New;fontSize=12;" value="+ constructor(obj: {name, url},&#xa;index: number, parentElement: HTMLElement): void" vertex="1">
+          <mxGeometry height="50" width="360" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontFamily=Courier New;fontSize=12;" value="+ render(): void" vertex="1">
+          <mxGeometry height="30" width="360" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="15" edge="1" parent="1" source="2" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#6c8ebf;fontStyle=2;fontSize=11;" target="8" value="&lt;&lt;creates&gt;&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Helvetica;fontSize=13;" value="Jelmagyarázat" vertex="1">
+          <mxGeometry height="130" width="300" x="100" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="16" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontFamily=Courier New;fontSize=11;" value="- (mínusz): privát mező / metódus" vertex="1">
+          <mxGeometry height="25" width="300" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="16" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontFamily=Courier New;fontSize=11;" value="+ (plusz): publikus mező / metódus" vertex="1">
+          <mxGeometry height="25" width="300" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="16" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontFamily=Courier New;fontSize=11;" value="# (hash): JS privát mező jelölése" vertex="1">
+          <mxGeometry height="25" width="300" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="16" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontFamily=Courier New;fontSize=11;" value="Szaggatott nyíl: függőség (dependency)" vertex="1">
+          <mxGeometry height="25" width="300" y="105" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

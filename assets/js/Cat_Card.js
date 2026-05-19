@@ -1,8 +1,8 @@
 export default class Cat_Card {
   #obj = {};
   #index = 0;
-  constructor(obj = {name, url}, index, parentElement) {
-    this.parentElement = parentElement;
+  constructor(obj = {name, url}, index, parent_element) {
+    this.parent_element = parent_element;
     this.#index = index;
     this.#obj = obj;
     this.render();
@@ -17,7 +17,7 @@ export default class Cat_Card {
             </div>
           </div>
         </div>`;
-    this.parentElement.insertAdjacentHTML("beforeend", kod);
+    this.parent_element.insertAdjacentHTML("beforeend", kod);
   }
 
 }
