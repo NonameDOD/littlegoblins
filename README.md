@@ -8,15 +8,17 @@
 
 ## Kezdőlap:
 - Statikus weboldal, információk a kennellel kapcsolatban.
-![Kezdőlap drotváz](assets/wireframes/Kezdolap.png)
+![Kezdőlap drotváz](assets/markdown_assets/Kezdolap.png)
 
 ## Almok
 - fotógaléria elemei macska kártyák, amin név is van
 - képes a macska dorombolni, ha mozgásban van az egér.
 - fotógaléria felett egy memoriajáték jelenlegi alomról
-![Almok drotváz](assets/wireframes/Almok.png)
+![Almok drotváz](assets/markdown_assets/Almok.png)
 
 ## UML ábrák
+
+![Almok UML](assets/markdown_assets/Almok_UML.png)
 
 ## Egyéb funkciók
 ### fejlécben mini navbar és kapcsolat: facebook, messenger.
