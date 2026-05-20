@@ -1,3 +1,4 @@
+pub mod fingerprint_traits;
 pub mod knowledge;
 
 use std::{
@@ -9,9 +10,9 @@ use std::{
 
 use knowledge::Knowledge;
 
-const FINGERPRINT_SIZE: usize = 16;
+//const FINGERPRINT_SIZE: usize = 16;
 
-pub type KnowledgeBase = Vec<Knowledge<FINGERPRINT_SIZE>>;
+pub type KnowledgeBase = Vec<Knowledge>;
 
 /*
 * A knowledge_base::new() a KnowledgeBase-nek a konstruktora,
