@@ -13,7 +13,11 @@
 ## Almok
 - fotógaléria elemei macska kártyák, amin név is van
 - képes a macska dorombolni, ha mozgásban van az egér.
-- fotógaléria felett egy memoriajáték jelenlegi alomról
+- fotógaléria felett egy memóriajáték jelenlegi alomról
+
+### Memóriajáték
+- Memory_Card
+  
 ![Almok drotváz](assets/markdown_assets/Almok.png)
 
 ## UML ábrák
