@@ -1,24 +1,37 @@
 # Little Goblins Tenyészet
 
-# Részletes leírás:
-
-## Navbar 
-- 2 gomb; Kezdőlap és Almokra
-- Chatbot bal alul
-
 ## Kezdőlap:
 - Statikus weboldal, információk a kennellel kapcsolatban.
+  
 ![Kezdőlap drotváz](assets/markdown_assets/Kezdolap.png)
-
+## Navbar 
+- 3 gomb; Kezdőlap, Almok, Macskaváltó™
+- Chatbot bal alul
 ## Almok
+
+![Almok drotváz](assets/markdown_assets/Almok.png)
 - fotógaléria elemei macska kártyák, amin név is van
 - képes a macska dorombolni, ha mozgásban van az egér.
 - fotógaléria felett egy memóriajáték jelenlegi alomról
 
-### Memóriajáték
-- Memory_Card
+### Galéria osztályok
+- `Cat_Card`
+  > Egy macskának a megjelenítését kezeli.
+- `Gallery`
+  > Példányosítja a `Cat_Cardokat` és a galleryben megjeleníti a `gallery_cat_list` tartalma alapján.
+- `gallery_cat_list`
+  > Tárolja a macskák nevét, és elérési útvonalát.
   
-![Almok drotváz](assets/markdown_assets/Almok.png)
+### Memóriajáték osztályok
+- `Memory_Card`
+  > Egy memóriakártya megjelenítése.
+- `Memory_Renderer`
+  > Memóriakártyák megjelenítése.
+- `Memory_Deck`
+  > Memóriajáték logikájának kezelése. 
+- `memory_cat_list`
+  > Tárolja a macskák nevét, és elérési útvonalát.
+
 
 ## UML ábrák
 
@@ -27,8 +40,10 @@
 ## Egyéb funkciók
 ### fejlécben mini navbar és kapcsolat: facebook, messenger.
 ### chatbot, ezen belül elérhető GY.I.K, fordítás más nyelvekre
-### [Neko](https://github.com/crgimenes/neko) 
-
+---
+## [Neko](https://github.com/crgimenes/neko)
+### Macskaváltó™
+> Megváltoztatja Neko kinézetét rózsaszín vagy szürkére.
 
 # Projektirányelvek
 > - A projekt feladatok `issue`-ként kerülnek kezelésre.
