@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 /chatbot/target/
+=======
+chatbot/target/flycheck0/
+>>>>>>> d1e5e66 (gitignore init 2)
