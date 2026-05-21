@@ -1,2 +1,2 @@
 pub trait Fingerprint {}
-pub trait FingerprintChar {}
+pub trait SubFingerprint {}
