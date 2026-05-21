@@ -8,7 +8,7 @@ export default class Cat_Card {
     this.render();
   }
   render() {
-    let kod = `
+    let code = `
         <div class="col-12 col-sm-6 col-md-4 mb-4">
           <div class="card h-100">
             <img class="card-img-top" src="${this.#obj.url}" alt="${this.#obj.name}" style="width:100%;max-height:220px;object-fit:contain;background:#f8f9fa;">
@@ -17,7 +17,7 @@ export default class Cat_Card {
             </div>
           </div>
         </div>`;
-    this.parent_element.insertAdjacentHTML("beforeend", kod);
+    this.parent_element.insertAdjacentHTML("beforeend", code);
   }
 
 }
