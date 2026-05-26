@@ -31,23 +31,32 @@ impl Fingerprint {
     }
 }
 
-impl Fingerprinteable for Fingerprint {
+impl Fingerprint {
     // A "szövegnek" a SubFingerprint-eit evaluate-eljük
-    fn evaluate<T: Fingerprinteable>(&self, other: T) -> f32 {
+    fn evaluate(&self, other: &Fingerprint) -> f32 {
         let mut likeliness: f32 = 0.0;
         let mut n_of: usize = 0;
-        for this in self.fingerprint {
-            for that in other.fingerprints() {}
+        for this in &self.fingerprint {
+            for that in &other.fingerprint {
+                if this.fsize()>that.fsize(){
+                    likeliness += this.evaluate(that);
+                    n_of += 1;
+                }else {
+                    that.evaluate(this);
+                    n_of += 1;
+                }
+            }
         }
-        todo!()
+        likeliness/(n_of as f32)
     }
     fn fsize(&self) -> usize {
         self.fingerprint.len()
     }
     // ha roszz a tipus -> Err
+    /*
     fn fingerprints<T: Fingerprinteable>(&self) -> Result<&Box<[T]>, ()> {
         Ok(&self.fingerprint)
-    }
+    }*/
 }
 
 // --- SubFingerprint
@@ -67,25 +76,38 @@ impl SubFingerprint {
     }
 }
 
-impl Fingerprinteable for SubFingerprint {
+impl SubFingerprint {
     // A "szavakat" evaluate-eljük
-    fn evaluate<T: Fingerprinteable>(&self, other: T) -> f32 {
-        todo!();
+    fn evaluate(&self, other: &SubFingerprint) -> f32 {
+        let mut likeliness: f32 = 0.0;
+        let mut n_of: usize = 0;
+        for this in &self.fingerprint{
+            for that in &other.fingerprint {
+                if this == that {
+                    likeliness += 1.0;
+                    n_of += 1;
+                }else {
+                    n_of += 1;
+                }
+            }
+        }
+        likeliness/(n_of as f32)
     }
     fn fsize(&self) -> usize {
         self.fingerprint.len()
     }
     // ha roszz a tipus -> Err
+    /* 
     fn sub_fingerprints<T: Fingerprinteable>(&self) -> Result<&Box<[String]>, ()> {
         Ok(&self.fingerprint)
-    }
+    }*/
 }
 
 // --- statikus funkciók
 
 // mindig a nagyban keressük a kicsit
 // ez kész
-pub(super) fn evaluate<T: Fingerprinteable>(this: T, that: T) -> f32 {
+pub(super) fn evaluate(this: Fingerprint, that: Fingerprint) -> f32 {
     if this.fsize() > that.fsize() {
         this.evaluate(that)
     } else {
