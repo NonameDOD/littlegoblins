@@ -14,10 +14,18 @@ export default class Memory_Card {
   }
 
   // --- Getterek a Deck logika számára ---
-  get element()    { return this.#element; }
-  get isFlipped()  { return this.#shown; }
-  get isMatched()  { return this.#matched; }
-  get name()       { return this.#obj.name; }
+  get element() {
+    return this.#element;
+  }
+  get isFlipped() {
+    return this.#shown;
+  }
+  get isMatched() {
+    return this.#matched;
+  }
+  get name() {
+    return this.#obj.name;
+  }
 
   // --- Publikus metódusok ---
   flip() {
@@ -70,7 +78,7 @@ export default class Memory_Card {
   /** Szinkronizálja a DOM-ot az aktuális állapottal */
   #update() {
     const card = this.#element.querySelector(".memory-card-inner");
-    const img  = card.querySelector("img");
+    const img = card.querySelector("img");
 
     if (this.#shown) {
       img.src = this.#obj.url;

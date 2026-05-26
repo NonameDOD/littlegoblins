@@ -11,11 +11,11 @@ import Memory_Card from "./Memory_Card.js";
  *  - győzelem detektálásáért
  */
 export default class Memory_Deck {
-  #cards = [];          // Memory_Card példányok tömbje
-  #flipped = [];        // éppen felfordított (de még nem párosított) kártyák (max 2)
-  #locked = false;      // true, amíg a nem-egyező párt visszaforgatjuk
-  #matchedPairs = 0;    // sikeresen párosított párok száma
-  #totalPairs = 0;      // az összes pár száma
+  #cards = []; // Memory_Card példányok tömbje
+  #flipped = []; // éppen felfordított (de még nem párosított) kártyák (max 2)
+  #locked = false; // true, amíg a nem-egyező párt visszaforgatjuk
+  #matchedPairs = 0; // sikeresen párosított párok száma
+  #totalPairs = 0; // az összes pár száma
 
   /**
    * @param {Array}       lista           – a memory_cat_list tömb
@@ -26,9 +26,7 @@ export default class Memory_Deck {
     this.#totalPairs = lista.length;
     this.#buildDeck(lista);
   }
-
   // ─── Privát: inicializálás ────────────────────────────────────────────────
-
   #buildDeck(lista) {
     // Minden elemből két példány → megkeverjük
     const pairs = [...lista, ...lista];
@@ -62,9 +60,9 @@ export default class Memory_Deck {
    *  - a kártya már párosítva van
    */
   #onCardClick(card) {
-    if (this.#locked)      return;
-    if (card.isFlipped)    return;
-    if (card.isMatched)    return;
+    if (this.#locked) return;
+    if (card.isFlipped) return;
+    if (card.isMatched) return;
 
     card.flip();
     this.#flipped.push(card);
@@ -78,7 +76,7 @@ export default class Memory_Deck {
   // ─── Privát: játéklogika ──────────────────────────────────────────────────
 
   #checkMatch() {
-    this.#locked = true;          // blokkolja a további kattintásokat
+    this.#locked = true; // blokkolja a további kattintásokat
     const [a, b] = this.#flipped;
 
     if (a.name === b.name) {
