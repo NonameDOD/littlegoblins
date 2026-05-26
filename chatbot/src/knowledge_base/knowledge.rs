@@ -1,116 +1,52 @@
-use crate::knowledge_base::fingerprint_traits::Fingerprinteable;
-
+// --- Knowledge
+// szöveg
+// Box mert ez nem fog változni futás idő közben
+// Itt döntjük el az L1-es hasonlóságot
 pub(super) struct Knowledge {
-    fingerprint: Fingerprint,
-    knowledge: String,
+    fingerprint: Box<[L1Fingerprint]>,
+    text: String,
 }
 
 impl Knowledge {
     fn new(text: String) -> Self {
-        Knowledge {
-            fingerprint: Fingerprint::new(&text),
-            knowledge: text,
-        }
-    }
-}
-
-// --- Fingerprint
-
-// ez a "szöveg"
-// fp
-struct Fingerprint {
-    fingerprint: Box<[SubFingerprint]>,
-}
-
-impl Fingerprint {
-    fn new(text: &str) -> Self {
-        let words: Vec<&str> = text.rsplit(" ").collect();
-        let mut pre_SubFingerprint: Vec<Fingerprint> = Vec::new();
-        for word in words {}
         todo!()
     }
 }
 
-impl Fingerprint {
-    // A "szövegnek" a SubFingerprint-eit evaluate-eljük
-    fn evaluate(&self, other: &Fingerprint) -> f32 {
-        let mut likeliness: f32 = 0.0;
-        let mut n_of: usize = 0;
-        for this in &self.fingerprint {
-            for that in &other.fingerprint {
-                if this.fsize()>that.fsize(){
-                    likeliness += this.evaluate(that);
-                    n_of += 1;
-                }else {
-                    that.evaluate(this);
-                    n_of += 1;
-                }
-            }
-        }
-        likeliness/(n_of as f32)
-    }
-    fn fsize(&self) -> usize {
-        self.fingerprint.len()
-    }
-    // ha roszz a tipus -> Err
-    /*
-    fn fingerprints<T: Fingerprinteable>(&self) -> Result<&Box<[T]>, ()> {
-        Ok(&self.fingerprint)
-    }*/
-}
-
-// --- SubFingerprint
-
-// v2-ben majd meg csinálom egyenlőre működjön valami
-// ezek a "szavak"
-// sfp
-struct SubFingerprint {
-    pub fingerprint: Box<[String]>,
+// --- L1Fingerprint
+// szó
+// Vec-et használok mert miután példányosítottük néhány elemet el kell dobni
+// Itt döntjük el a hasonlóságot az l0-ról
+struct L1Fingerprint {
+    pub fingerprint: Vec<L0Fingerprint>,
     pub count: usize,
 }
 
-impl SubFingerprint {
-    //talán krakter lista lenne a jó döntés
-    fn new(word: Box<[u8]>) -> Self {
-        todo!();
+impl L1Fingerprint {
+    fn new(word: &[char]) -> Self {
+        let mut pre_l1_fingerprint: Vec<L0Fingerprint> = Vec::new();
+        // az i az a "hátső" iteráló
+        let mut i: u32 = 0;
+        // az j az az "első" iteráló
+        let mut j: u32 = 0;
+        todo!()
     }
 }
 
-impl SubFingerprint {
-    // A "szavakat" evaluate-eljük
-    fn evaluate(&self, other: &SubFingerprint) -> f32 {
-        let mut likeliness: f32 = 0.0;
-        let mut n_of: usize = 0;
-        for this in &self.fingerprint{
-            for that in &other.fingerprint {
-                if this == that {
-                    likeliness += 1.0;
-                    n_of += 1;
-                }else {
-                    n_of += 1;
-                }
-            }
+// --- L0Fingerprint
+// szótag
+// Itt csak egy szótagot tárolunk és hogy hány van a szóban belőlle
+// Itt nem csinálunk össze hasonlítást ez csak tároló
+struct L0Fingerprint {
+    pub fingerprint: String,
+    pub count: usize,
+}
+
+impl L0Fingerprint {
+    fn new(syllable: String) -> Self {
+        L0Fingerprint {
+            fingerprint: syllable,
+            count: 1,
         }
-        likeliness/(n_of as f32)
-    }
-    fn fsize(&self) -> usize {
-        self.fingerprint.len()
-    }
-    // ha roszz a tipus -> Err
-    /* 
-    fn sub_fingerprints<T: Fingerprinteable>(&self) -> Result<&Box<[String]>, ()> {
-        Ok(&self.fingerprint)
-    }*/
-}
-
-// --- statikus funkciók
-
-// mindig a nagyban keressük a kicsit
-// ez kész
-pub(super) fn evaluate(this: Fingerprint, that: Fingerprint) -> f32 {
-    if this.fsize() > that.fsize() {
-        this.evaluate(that)
-    } else {
-        that.evaluate(this)
     }
 }

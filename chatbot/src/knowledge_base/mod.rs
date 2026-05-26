@@ -1,4 +1,3 @@
-pub mod fingerprint_traits;
 pub mod knowledge;
 
 use std::{
@@ -42,6 +41,6 @@ fn json_parse(p: &String) -> Result<String, ()> {
     todo!();
 }
 
-fn md_parse(p: &String) -> Result<String, ErrorKind> {
+fn md_parse(p: &String) -> Result<String, ()> {
     todo!();
 }
