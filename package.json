@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "cypress": "^15.16.0"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.5"
   }
 }
