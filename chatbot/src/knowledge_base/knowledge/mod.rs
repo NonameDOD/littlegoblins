@@ -1,5 +1,6 @@
+mod tesztek;
 // --- Knowledge
-// -[ ] Knowledge
+// -[~] Knowledge
 // szöveg
 // Box mert ez nem fog változni futás idő közben
 // Itt döntjük el az L1-es hasonlóságot
@@ -9,13 +10,60 @@ pub(super) struct Knowledge {
 }
 
 impl Knowledge {
+    const NEW_THRESHOLD: f32 = 0.8;
+    const WORK_THRESHOLD: f32 = 0.4;
+
     fn new(text: String) -> Self {
-        let pre_fingerprint: Vec<L1Fingerprint> = Vec::new();
-        let words: Vec<String> = text.split(" ").collect();
+        let mut pre_fingerprint: Vec<L1Fingerprint> = Vec::new();
+        let words: Vec<&str> = text.split(" ").collect();
+        for word in words {
+            if word.len() >= 2 {
+                let l1: L1Fingerprint = L1Fingerprint::new(word);
+                match Knowledge::has(&l1, &pre_fingerprint) {
+                    Some(i) => pre_fingerprint[i].count += 1,
+                    None => pre_fingerprint.push(l1),
+                }
+            }
+        }
         Knowledge {
             fingerprint: pre_fingerprint,
             text,
         }
+    }
+    fn has(cmp: &L1Fingerprint, sieve: &[L1Fingerprint]) -> Option<usize> {
+        let mut i: usize = 0;
+        while i < sieve.len() && (Knowledge::NEW_THRESHOLD >= sieve[i].evaluat(cmp)) {
+            i += 1;
+        }
+        if i < sieve.len() { Some(i) } else { None }
+    }
+
+    fn cmp(cmp: &L1Fingerprint, sieve: &[L1Fingerprint]) -> Option<f32> {
+        let mut i: usize = 0;
+        let mut likeliness = sieve[i].evaluat(cmp);
+        while i < sieve.len() && (Knowledge::WORK_THRESHOLD >= likeliness) {
+            i += 1;
+            likeliness = sieve[i].evaluat(cmp);
+        }
+        if i < sieve.len() {
+            Some(likeliness)
+        } else {
+            None
+        }
+    }
+
+    fn evaluat(&self, other: &Knowledge) -> f32 {
+        let mut likeliness: f32 = 0.0;
+        let mut count: usize = 0;
+        //let mut cmp: Option<f32> = Some(0.0);
+        for this in &self.fingerprint {
+            //cmp = Knowledge::cmp(this, &other.fingerprint);
+            if let Some(l) = Knowledge::cmp(this, &other.fingerprint) {
+                likeliness += (this.count as f32) * l;
+            }
+            count += this.count;
+        }
+        likeliness / (count as f32)
     }
 }
 
@@ -29,13 +77,14 @@ struct L1Fingerprint {
     pub count: usize,
 }
 
-// "regex"
+// poor mans "regex"
 static CONSONANT: &str = "bdgjlmnrvzptckhfsy";
 static VOWEL: &str = "aeioöuüáéíóőúű";
 static BRAKER: &str = "0123456789@.,;-_!?$#&%\"\'+*/\\";
 
 impl L1Fingerprint {
     fn new(word: &str) -> Self {
+        let word = word.trim().trim_end_matches(['.', '!', '?', ',', ';']);
         let mut pre_l1_fingerprint: Vec<L0Fingerprint> = Vec::new();
         // az i az a "hátső" iteráló (legutóbbi magán hangzó+1)
         let mut i: usize = 0;
@@ -61,16 +110,17 @@ impl L1Fingerprint {
             }
 
             if has_vowel && n_consonant >= 2 {
-                let l0 = L0Fingerprint::new(word[i..j].to_string());
+                let l0 = L0Fingerprint::new(word[i..=j].to_string());
 
                 match l0_exist(&l0, &pre_l1_fingerprint) {
                     Some(i) => pre_l1_fingerprint[i].count += 1,
                     None => pre_l1_fingerprint.push(l0),
                 }
-                i = j;
+                i = j + 1;
                 has_vowel = false;
                 n_consonant = 0;
             }
+            j += 1;
         }
 
         L1Fingerprint {
@@ -80,12 +130,12 @@ impl L1Fingerprint {
     }
 
     // mennyier hasonlít egy szó egy másik szóra
-    fn evaluat(&self, other: L1Fingerprint) -> f32 {
+    fn evaluat(&self, other: &L1Fingerprint) -> f32 {
         let mut likeliness: f32 = 0.0;
         let mut count: usize = 0;
         for this in &self.fingerprint {
             if L1Fingerprint::has(this, &other.fingerprint) {
-                likeliness += 1.0;
+                likeliness += this.count as f32;
             }
             count += this.count;
         }

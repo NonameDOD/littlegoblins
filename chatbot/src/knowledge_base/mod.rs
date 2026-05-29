@@ -1,11 +1,6 @@
 pub mod knowledge;
 
-use std::{
-    fs::{File, ReadDir, read},
-    io::ErrorKind,
-    result,
-    str::FromStr,
-};
+use std::fs::File;
 
 use knowledge::Knowledge;
 
