@@ -1,4 +1,6 @@
-mod tesztek;
+mod l0_fingerprint;
+mod l1_fingerprint;
+mod tests;
 // --- Knowledge
 // -[~] Knowledge
 // szöveg
@@ -85,6 +87,7 @@ static BRAKER: &str = "0123456789@.,;-_!?$#&%\"\'+*/\\";
 impl L1Fingerprint {
     fn new(word: &str) -> Self {
         let word = word.trim().trim_end_matches(['.', '!', '?', ',', ';']);
+        let word_chars: Vec<_> = word.chars().collect();
         let mut pre_l1_fingerprint: Vec<L0Fingerprint> = Vec::new();
         // az i az a "hátső" iteráló (legutóbbi magán hangzó+1)
         let mut i: usize = 0;
@@ -94,15 +97,15 @@ impl L1Fingerprint {
         let mut has_vowel: bool = false;
         let mut n_consonant: usize = 0;
         while j < word.len() && i < word.len() {
-            if L0Fingerprint::has(word.as_bytes()[j], VOWEL) {
+            if L0Fingerprint::has(word_chars[j], VOWEL) {
                 has_vowel = true;
             }
 
-            if L0Fingerprint::has(word.as_bytes()[j], CONSONANT) {
+            if L0Fingerprint::has(word_chars[j], CONSONANT) {
                 n_consonant += 1;
             }
 
-            if L0Fingerprint::has(word.as_bytes()[j], BRAKER) || n_consonant >= 3 {
+            if L0Fingerprint::has(word_chars[j], BRAKER) || n_consonant >= 3 {
                 return L1Fingerprint {
                     fingerprint: vec![L0Fingerprint::new(word.to_string())],
                     count: 1,
@@ -112,7 +115,7 @@ impl L1Fingerprint {
             if has_vowel && n_consonant >= 2 {
                 let l0 = L0Fingerprint::new(word[i..=j].to_string());
 
-                match l0_exist(&l0, &pre_l1_fingerprint) {
+                match L0Fingerprint::l0_exist_at(&l0, &pre_l1_fingerprint) {
                     Some(i) => pre_l1_fingerprint[i].count += 1,
                     None => pre_l1_fingerprint.push(l0),
                 }
@@ -171,12 +174,21 @@ impl L0Fingerprint {
         }
     }
 
-    fn has(char: u8, sieve: &str) -> bool {
+    fn has(char: char, sieve: &str) -> bool {
         let mut i: usize = 0;
-        while i < sieve.len() && (char != sieve.as_bytes()[i]) {
+        let sieve: Vec<_> = sieve.chars().collect();
+        while i < sieve.len() && (char != sieve[i]) {
             i += 1;
         }
         i < sieve.len()
+    }
+
+    fn l0_exist_at(cmp: &L0Fingerprint, sieve: &[L0Fingerprint]) -> Option<usize> {
+        let mut i: usize = 0;
+        while i < sieve.len() && !(*cmp == sieve[i]) {
+            i += 1;
+        }
+        if i < sieve.len() { Some(i) } else { None }
     }
 }
 
@@ -184,12 +196,4 @@ impl PartialEq for L0Fingerprint {
     fn eq(&self, other: &Self) -> bool {
         self.fingerprint == other.fingerprint
     }
-}
-
-fn l0_exist(cmp: &L0Fingerprint, sieve: &[L0Fingerprint]) -> Option<usize> {
-    let mut i: usize = 0;
-    while i < sieve.len() && !(*cmp == sieve[i]) {
-        i += 1;
-    }
-    if i < sieve.len() { Some(i) } else { None }
 }
