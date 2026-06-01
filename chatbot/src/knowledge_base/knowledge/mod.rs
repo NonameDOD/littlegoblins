@@ -1,5 +1,5 @@
-pub mod l0_fingerprint;
-pub mod l1_fingerprint;
+mod l0_fingerprint;
+mod l1_fingerprint;
 mod tests;
 
 use crate::knowledge_base::knowledge::l1_fingerprint::L1Fingerprint;
@@ -21,7 +21,7 @@ impl Knowledge {
         let mut pre_fingerprint: Vec<L1Fingerprint> = Vec::new();
         let words: Vec<&str> = text.split(" ").collect();
         for word in words {
-            if word.len() >= 2 {
+            if word.len() > 2 {
                 let l1: L1Fingerprint = L1Fingerprint::new(word);
                 match Knowledge::has(&l1, &pre_fingerprint) {
                     Some(i) => pre_fingerprint[i].count += 1,
@@ -46,8 +46,8 @@ impl Knowledge {
         let mut i: usize = 0;
         let mut likeliness = sieve[i].evaluat(cmp);
         while i < sieve.len() && (Knowledge::WORK_THRESHOLD >= likeliness) {
-            i += 1;
             likeliness = sieve[i].evaluat(cmp);
+            i += 1;
         }
         if i < sieve.len() {
             Some(likeliness)

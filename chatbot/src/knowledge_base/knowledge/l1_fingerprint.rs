@@ -42,20 +42,20 @@ impl L1Fingerprint {
                 };
             }
 
-            if has_vowel && n_consonant >= 2 {
+            if has_vowel && (n_consonant >= 1) {
                 let l0 = L0Fingerprint::new(word[i..=j].to_string());
 
                 match L0Fingerprint::l0_exist_at(&l0, &pre_l1_fingerprint) {
                     Some(i) => pre_l1_fingerprint[i].count += 1,
                     None => pre_l1_fingerprint.push(l0),
-                }
+                };
                 i = j + 1;
                 has_vowel = false;
                 n_consonant = 0;
             }
             j += 1;
         }
-
+        //panic!("{:?}", pre_l1_fingerprint[1].fingerprint);
         L1Fingerprint {
             fingerprint: pre_l1_fingerprint,
             count: 1,

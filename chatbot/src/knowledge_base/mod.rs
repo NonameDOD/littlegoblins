@@ -1,4 +1,4 @@
-pub mod knowledge;
+mod knowledge;
 
 use std::fs::File;
 
