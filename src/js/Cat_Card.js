@@ -4,9 +4,8 @@
  * Felelős:
  *  - a kártya HTML-struktúrájának generálásáért
  *  - a kártya szülő konténerbe fűzéséért (`insertAdjacentHTML`)
+ *  - dorombolás lejátszása ha képre viszik az egeret
  *
- * @note Ez az osztály kizárólag megjelenítést végez – állapotkezelést vagy
- *       eseménykezelést nem tartalmaz.
  */
 export default class Cat_Card {
   /** @type {{name: string, url: string}} A kártyához tartozó adatobjektum */
@@ -15,7 +14,10 @@ export default class Cat_Card {
   /** @type {number} A kártya sorszáma a listában (0-tól indexelt) */
   #index = 0;
 
-  /**
+  // Megosztott Audio példány az összes kártyához (nem hozunk létre minden hover-re újat)
+  static #sound = new Audio("../../assets/sounds/dorombolas.mp3");
+
+   /**
    * Létrehoz egy új kártyapéldányt és azonnal ki is rajzolja a szülő konténerbe.
    *
    * @param {{name: string, url: string}} obj            – a kártya adatobjektuma (`name`: felirat, `url`: képforrás)
@@ -44,16 +46,27 @@ export default class Cat_Card {
    *
    * @returns {void}
    */
+
   render() {
-    let code = `
-        <div class="col-12 col-sm-6 col-md-4 mb-4">
-          <div class="card h-100">
-            <img class="card-img-top" src="${this.#obj.url}" alt="${this.#obj.name}" style="width:100%;max-height:220px;object-fit:contain;background:#f8f9fa;">
-            <div class="card-body d-flex align-items-center justify-content-center">
-              <p class="card-text text-center mb-0">${this.#obj.name}</p>
-            </div>
+    const id = `cat-card-${this.#index}`;
+
+    const code = `
+      <div class="col-12 col-sm-6 col-md-4 mb-4" id="${id}">
+        <div class="card h-100">
+          <img class="card-img-top" src="${this.#obj.url}" alt="${this.#obj.name}" style="width:100%;max-height:220px;object-fit:contain;background:#f8f9fa;">
+          <div class="card-body d-flex align-items-center justify-content-center">
+            <p class="card-text text-center mb-0">${this.#obj.name}</p>
           </div>
-        </div>`;
+        </div>
+      </div>`;
+
     this.parent_element.insertAdjacentHTML("beforeend", code);
+
+    // Hang lejátszása egér ráhúzásakor
+    const card = this.parent_element.querySelector(`#${id} .card`);
+    card.addEventListener("mouseenter", () => {
+      Cat_Card.#sound.currentTime = 0;
+      Cat_Card.#sound.play().catch(() => {});
+    });
   }
 }

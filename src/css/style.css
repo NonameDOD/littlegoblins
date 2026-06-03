@@ -5,6 +5,20 @@
 body {
   margin: auto;
   background-color: #def3fd;
+  font-family: "Jost", sans-serif;
+}
+/* Reszponzív betűméretek */
+h1 {
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  font-weight: 700;
+}
+h2 {
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-weight: 600;
+}
+p {
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  line-height: 1.7;
 }
 
 article,
@@ -75,7 +89,9 @@ header {
   padding: 7px 10px;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .nav-btn:hover {

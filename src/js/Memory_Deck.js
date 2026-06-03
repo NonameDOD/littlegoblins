@@ -21,10 +21,10 @@ export default class Memory_Deck {
   #locked = false;
 
   /** @type {number} Sikeresen párosított párok száma */
-  #matchedPairs = 0;
+  #matched_pairs = 0;
 
   /** @type {number} Az összes pár száma (a lista.length alapján) */
-  #totalPairs = 0;
+  #total_pairs = 0;
 
   /**
    * Létrehozza a paklit: megkeveri a párokat, példányosítja a kártyákat,
@@ -35,8 +35,8 @@ export default class Memory_Deck {
    */
   constructor(lista, parent_element) {
     this.parent_element = parent_element;
-    this.#totalPairs = lista.length;
-    this.#buildDeck(lista);
+    this.#total_pairs = lista.length;
+    this.#build_deck(lista);
   }
 
   // ─── Privát: inicializálás ────────────────────────────────────────────────
@@ -49,7 +49,7 @@ export default class Memory_Deck {
    * @param {Array<{name: string, img: string}>} lista – a memory_cat_list tömb
    * @returns {void}
    */
-  #buildDeck(lista) {
+  #build_deck(lista) {
     // Minden elemből két példány → megkeverjük
     const pairs = [...lista, ...lista];
     this.#shuffle(pairs);
@@ -85,8 +85,8 @@ export default class Memory_Deck {
    *
    * Eldobja a kattintást, ha:
    *  - a játék le van zárva (`#locked === true`, azaz animáció fut)
-   *  - a kártya már fel van fordítva (`card.isFlipped === true`)
-   *  - a kártya már párosítva van (`card.isMatched === true`)
+   *  - a kártya már fel van fordítva (`card.is_flipped === true`)
+   *  - a kártya már párosítva van (`card.is_matched === true`)
    *
    * Ha a kattintás érvényes, felfordítja a kártyát, és ha már két kártya
    * van felfordítva, meghívja az egyezésvizsgálatot.
@@ -96,15 +96,15 @@ export default class Memory_Deck {
    */
   #onCardClick(card) {
     if (this.#locked) return;
-    if (card.isFlipped) return;
-    if (card.isMatched) return;
+    if (card.is_flipped) return;
+    if (card.is_matched) return;
 
     card.flip();
     this.#flipped.push(card);
 
     // Ha már két kártya van felfordítva → egyezés vizsgálata
     if (this.#flipped.length === 2) {
-      this.#checkMatch();
+      this.#check_match();
     }
   }
 
@@ -120,19 +120,19 @@ export default class Memory_Deck {
    *
    * @returns {void}
    */
-  #checkMatch() {
+  #check_match() {
     this.#locked = true; // blokkolja a további kattintásokat
     const [a, b] = this.#flipped;
 
     if (a.name === b.name) {
       a.match();
       b.match();
-      this.#matchedPairs++;
+      this.#matched_pairs++;
       this.#flipped = [];
       this.#locked = false;
 
-      if (this.#matchedPairs === this.#totalPairs) {
-        this.#onWin();
+      if (this.#matched_pairs === this.#total_pairs) {
+        this.#on_win();
       }
     } else {
       setTimeout(() => {
@@ -153,7 +153,7 @@ export default class Memory_Deck {
    *
    * @returns {void}
    */
-  #onWin() {
+  #on_win() {
     setTimeout(() => {
       // Győzelem banner a konténerbe
       const banner = document.createElement("div");

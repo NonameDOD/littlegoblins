@@ -1,5 +1,5 @@
 /**
- * main.js – az alkalmazás belépési pontja
+ * index.js – az alkalmazás belépési pontja
  *
  * Felelős:
  *  - a galériá azonnali kirajzolásáért
@@ -13,17 +13,17 @@ import Memory_Deck from "./Memory_Deck.js";
 import { memory_cat_list } from "./memory_cat_list.js";
 
 /** @type {HTMLElement} A galériakártyák szülőkonténere (`#gallery`) */
-const galleryContainer = document.getElementById("gallery");
+const gallery_container = document.getElementById("gallery");
 
 /** @type {HTMLElement} A memóriajáték szülőkonténere (`#memory_game`) */
-const memoryContainer = document.getElementById("memory_game");
+const memory_container = document.getElementById("memory_game");
 
 /** @type {HTMLButtonElement} A memóriajátékot indító gomb a `#memory_game` konténeren belül */
 const memory_wrapper = document.getElementsByClassName("memory-wrapper")
 const startBtn = memory_wrapper[0].querySelector("button");
 
 // Galéria – változatlan
-new Gallery(gallery_cat_list, galleryContainer);
+new Gallery(gallery_cat_list, gallery_container);
 
 /**
  * Kattintásra eltávolítja az indítógombot, majd létrehozza a
@@ -33,8 +33,7 @@ new Gallery(gallery_cat_list, galleryContainer);
  * @listens HTMLButtonElement#click
  */
 startBtn.addEventListener("click", () => {
-  // Gomb eltávolítása, majd játék létrehozása
   startBtn.remove();
-  new Memory_Deck(memory_cat_list, memoryContainer);
+  new Memory_Deck(memory_cat_list, memory_container);
 });
 

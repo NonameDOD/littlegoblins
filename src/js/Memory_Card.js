@@ -8,7 +8,7 @@
  */
 export default class Memory_Card {
   /** @type {string} A hátlapon megjelenő kép elérési útja */
-  #backImage = "../../assets/images/logo.png";
+  #back_image = "../../assets/images/logo.png";
 
   /** @type {boolean} true, ha a kártya éppen előlapján mutat (felfordított) */
   #shown = false;
@@ -57,7 +57,7 @@ export default class Memory_Card {
    *
    * @type {boolean}
    */
-  get isFlipped() {
+  get is_flipped() {
     return this.#shown;
   }
 
@@ -67,7 +67,7 @@ export default class Memory_Card {
    *
    * @type {boolean}
    */
-  get isMatched() {
+  get is_matched() {
     return this.#matched;
   }
 
@@ -148,7 +148,7 @@ export default class Memory_Card {
     // Kép – alapból a hátlap
     const img = document.createElement("img");
     img.className = "card-img-top";
-    img.src = this.#backImage;
+    img.src = this.#back_image;
     img.alt = "kártya hátlapja";
     img.style.cssText =
       "width:100%; max-height:220px; object-fit:contain; background:#f8f9fa;";
@@ -187,7 +187,7 @@ export default class Memory_Card {
         card.appendChild(body);
       }
     } else {
-      img.src = this.#backImage;
+      img.src = this.#back_image;
       img.alt = "kártya hátlapja";
       card.querySelector(".card-body")?.remove();
     }

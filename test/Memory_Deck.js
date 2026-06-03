@@ -14,8 +14,8 @@ export default class Memory_Deck {
   #cards = []; // Memory_Card példányok tömbje
   #flipped = []; // éppen felfordított (de még nem párosított) kártyák (max 2)
   #locked = false; // true, amíg a nem-egyező párt visszaforgatjuk
-  #matchedPairs = 0; // sikeresen párosított párok száma
-  #totalPairs = 0; // az összes pár száma
+  #matched_pairs = 0; // sikeresen párosított párok száma
+  #total_pairs = 0; // az összes pár száma
 
   /**
    * @param {Array}       lista           – a memory_cat_list tömb
@@ -23,11 +23,11 @@ export default class Memory_Deck {
    */
   constructor(lista, parent_element) {
     this.parent_element = parent_element;
-    this.#totalPairs = lista.length;
-    this.#buildDeck(lista);
+    this.#total_pairs = lista.length;
+    this.#build_deck(lista);
   }
   // ─── Privát: inicializálás ────────────────────────────────────────────────
-  #buildDeck(lista) {
+  #build_deck(lista) {
     // Minden elemből két példány → megkeverjük
     const pairs = [...lista, ...lista];
 
@@ -52,21 +52,21 @@ export default class Memory_Deck {
    */
   #onCardClick(card) {
     if (this.#locked) return;
-    if (card.isFlipped) return;
-    if (card.isMatched) return;
+    if (card.is_flipped) return;
+    if (card.is_matched) return;
 
     card.flip();
     this.#flipped.push(card);
 
     // Ha már két kártya van felfordítva → egyezés vizsgálata
     if (this.#flipped.length === 2) {
-      this.#checkMatch();
+      this.#check_match();
     }
   }
 
   // ─── Privát: játéklogika ──────────────────────────────────────────────────
 
-  #checkMatch() {
+  #check_match() {
     this.#locked = true; // blokkolja a további kattintásokat
     const [a, b] = this.#flipped;
 
@@ -74,12 +74,12 @@ export default class Memory_Deck {
       // ✅ Egyezés
       a.match();
       b.match();
-      this.#matchedPairs++;
+      this.#matched_pairs++;
       this.#flipped = [];
       this.#locked = false;
 
-      if (this.#matchedPairs === this.#totalPairs) {
-        this.#onWin();
+      if (this.#matched_pairs === this.#total_pairs) {
+        this.#on_win();
       }
     } else {
       // ❌ Nem egyeznek → 1 mp után visszaforgatjuk
@@ -92,7 +92,7 @@ export default class Memory_Deck {
     }
   }
 
-  #onWin() {
+  #on_win() {
     setTimeout(() => {
       // Győzelem banner a konténerbe
       const banner = document.createElement("div");
