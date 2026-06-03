@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="zo4V5j4AZQR4XqJ_Gopp">
+    <mxGraphModel dx="1542" dy="855" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="92_8sJiqm881oMSt4KSl-1" parent="1" style="text;html=1;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=1;fontSize=13;fontColor=#333333;borderStyle=1;" value="«module» memory_cat_list" vertex="1">
+          <mxGeometry height="40" width="260" x="580" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-2" parent="1" style="line;strokeColor=#666666;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="260" x="580" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-3" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=11;html=1;" value="+ memory_cat_list : { name: string, url: string }[]" vertex="1">
+          <mxGeometry height="24" width="260" x="580" y="16" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-4" parent="1" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;align=center;verticalAlign=middle;fontStyle=1;fontSize=13;overflow=hidden;" value="Memory_Card" vertex="1">
+          <mxGeometry height="40" width="280" x="40" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-5" parent="1" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;html=1;borderStyle=1;" value="– back_image : string = &quot;logo.png&quot;&#xa;– shown : boolean&#xa;– matched : boolean&#xa;– obj : { name: string, url: string }&#xa;– index : number&#xa;– element : HTMLDivElement | null" vertex="1">
+          <mxGeometry height="110" width="280" x="40" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-6" parent="1" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="8" width="280" x="40" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-7" parent="1" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;html=1;borderStyle=1;" value="+ constructor(obj, index, parent_element)&#xa;+ get element() : HTMLDivElement&#xa;+ get is_flipped() : boolean&#xa;+ get is_matched() : boolean&#xa;+ get name() : string&#xa;+ flip() : void&#xa;+ unflip() : void&#xa;+ match() : void&#xa;– createElement() : void&#xa;– update() : void" vertex="1">
+          <mxGeometry height="170" width="280" x="40" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-8" parent="1" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=center;verticalAlign=middle;fontStyle=1;fontSize=13;overflow=hidden;" value="Memory_Deck" vertex="1">
+          <mxGeometry height="40" width="300" x="530" y="146" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-9" parent="1" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;html=1;borderStyle=1;" value="– cards : Memory_Card[]&#xa;– flipped : Memory_Card[]&#xa;– locked : boolean&#xa;– matched_pairs : number&#xa;– total_pairs : number&#xa;+ parent_element : HTMLElement" vertex="1">
+          <mxGeometry height="110" width="300" x="530" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-11" parent="1" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;html=1;borderStyle=1;" value="+ constructor(lista, parent_element)&#xa;– build_deck(lista) : void&#xa;– shuffle(arr) : void&#xa;– onCardClick(card : Memory_Card) : void&#xa;– check_match() : void&#xa;– on_win() : void" vertex="1">
+          <mxGeometry height="120" width="300" x="530" y="296" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-24" edge="1" parent="1" source="92_8sJiqm881oMSt4KSl-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-12" parent="1" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=middle;fontStyle=1;fontSize=13;overflow=hidden;" value="Memory_Renderer" vertex="1">
+          <mxGeometry height="40" width="280" x="40" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-13" parent="1" style="text;strokeColor=#d6b656;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;html=1;borderStyle=1;" value="– lista : { name: string, url: string }[]&#xa;+ parent_element : HTMLElement" vertex="1">
+          <mxGeometry height="50" width="280" x="40" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-15" parent="1" style="text;strokeColor=#d6b656;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;html=1;borderStyle=1;" value="+ constructor(lista, parent_element)&#xa;+ render() : void" vertex="1">
+          <mxGeometry height="50" width="280" x="40" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-16" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=center;" value="«external»&#xa;HTMLElement&#xa;(#memory_game konténer)" vertex="1">
+          <mxGeometry height="70" width="200" x="580" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-17" edge="1" parent="1" source="92_8sJiqm881oMSt4KSl-1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#666666;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="92_8sJiqm881oMSt4KSl-8" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-18" edge="1" parent="1" source="92_8sJiqm881oMSt4KSl-1" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#666666;fontSize=11;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="92_8sJiqm881oMSt4KSl-12" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-23" connectable="0" parent="92_8sJiqm881oMSt4KSl-18" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Text" vertex="1">
+          <mxGeometry relative="1" x="0.9737" y="-1" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-19" edge="1" parent="1" source="92_8sJiqm881oMSt4KSl-8" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;startArrow=ERmandOne;startFill=1;strokeColor=#6c8ebf;fontSize=11;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="92_8sJiqm881oMSt4KSl-4" value="creates / owns&#xa;0..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-20" edge="1" parent="1" source="92_8sJiqm881oMSt4KSl-15" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#d6b656;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="92_8sJiqm881oMSt4KSl-4" value="creates 0..*">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="310" y="90" as="sourcePoint" />
+            <mxPoint x="320" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-21" edge="1" parent="1" source="92_8sJiqm881oMSt4KSl-11" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#b85450;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="92_8sJiqm881oMSt4KSl-16" value="parent_element">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="92_8sJiqm881oMSt4KSl-22" edge="1" parent="1" source="92_8sJiqm881oMSt4KSl-7" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#b85450;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="92_8sJiqm881oMSt4KSl-16" value="parent_element">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

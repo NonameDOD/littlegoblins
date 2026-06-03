@@ -1,0 +1,119 @@
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <!-- ═══════════════════════════════════════════════
+         memory_cat_list  (modul / adatforrás)
+    ════════════════════════════════════════════════ -->
+    <mxCell id="cat_title" value="«module» memory_cat_list" style="text;html=1;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=1;fontSize=13;fontColor=#333333;borderStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="580" y="40" width="260" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="cat_sep" value="" style="line;strokeColor=#666666;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="580" y="80" width="260" height="8" as="geometry"/>
+    </mxCell>
+    <mxCell id="cat_f1" value="+ memory_cat_list : { name: string, url: string }[]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;fontSize=11;html=1;" vertex="1" parent="1">
+      <mxGeometry x="580" y="88" width="260" height="24" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════
+         Memory_Card
+    ════════════════════════════════════════════════ -->
+    <!-- header -->
+    <mxCell id="card_title" value="Memory_Card" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;align=center;verticalAlign=middle;fontStyle=1;fontSize=13;overflow=hidden;" vertex="1" parent="1">
+      <mxGeometry x="40" y="220" width="280" height="40" as="geometry"/>
+    </mxCell>
+    <!-- fields section -->
+    <mxCell id="card_fields" value="– back_image : string = &quot;logo.png&quot;&#xa;– shown : boolean&#xa;– matched : boolean&#xa;– obj : { name: string, url: string }&#xa;– index : number&#xa;– element : HTMLDivElement | null" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;html=1;borderStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="40" y="260" width="280" height="110" as="geometry"/>
+    </mxCell>
+    <!-- separator -->
+    <mxCell id="card_sep" value="" style="line;strokeColor=#6c8ebf;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="40" y="370" width="280" height="8" as="geometry"/>
+    </mxCell>
+    <!-- methods section -->
+    <mxCell id="card_methods" value="+ constructor(obj, index, parent_element)&#xa;+ get element() : HTMLDivElement&#xa;+ get is_flipped() : boolean&#xa;+ get is_matched() : boolean&#xa;+ get name() : string&#xa;+ flip() : void&#xa;+ unflip() : void&#xa;+ match() : void&#xa;– createElement() : void&#xa;– update() : void" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;html=1;borderStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="40" y="378" width="280" height="170" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════
+         Memory_Deck
+    ════════════════════════════════════════════════ -->
+    <mxCell id="deck_title" value="Memory_Deck" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=center;verticalAlign=middle;fontStyle=1;fontSize=13;overflow=hidden;" vertex="1" parent="1">
+      <mxGeometry x="500" y="220" width="300" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="deck_fields" value="– cards : Memory_Card[]&#xa;– flipped : Memory_Card[]&#xa;– locked : boolean&#xa;– matched_pairs : number&#xa;– total_pairs : number&#xa;+ parent_element : HTMLElement" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;html=1;borderStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="500" y="260" width="300" height="110" as="geometry"/>
+    </mxCell>
+    <mxCell id="deck_sep" value="" style="line;strokeColor=#82b366;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="500" y="370" width="300" height="8" as="geometry"/>
+    </mxCell>
+    <mxCell id="deck_methods" value="+ constructor(lista, parent_element)&#xa;– build_deck(lista) : void&#xa;– shuffle(arr) : void&#xa;– onCardClick(card : Memory_Card) : void&#xa;– check_match() : void&#xa;– on_win() : void" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;html=1;borderStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="500" y="378" width="300" height="120" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════
+         Memory_Renderer
+    ════════════════════════════════════════════════ -->
+    <mxCell id="rend_title" value="Memory_Renderer" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=middle;fontStyle=1;fontSize=13;overflow=hidden;" vertex="1" parent="1">
+      <mxGeometry x="960" y="220" width="280" height="40" as="geometry"/>
+    </mxCell>
+    <mxCell id="rend_fields" value="– lista : { name: string, url: string }[]&#xa;+ parent_element : HTMLElement" style="text;strokeColor=#d6b656;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;html=1;borderStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="960" y="260" width="280" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="rend_sep" value="" style="line;strokeColor=#d6b656;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="960" y="310" width="280" height="8" as="geometry"/>
+    </mxCell>
+    <mxCell id="rend_methods" value="+ constructor(lista, parent_element)&#xa;+ render() : void" style="text;strokeColor=#d6b656;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=6;fontSize=11;html=1;borderStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="960" y="318" width="280" height="50" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════
+         HTMLElement  (külső függőség, megjegyzés)
+    ════════════════════════════════════════════════ -->
+    <mxCell id="html_el" value="«external»&#xa;HTMLElement&#xa;(#memory_game konténer)" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=center;" vertex="1" parent="1">
+      <mxGeometry x="580" y="620" width="200" height="70" as="geometry"/>
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════════════
+         ÉLEK
+    ════════════════════════════════════════════════ -->
+
+    <!-- memory_cat_list  - - uses - ->  Memory_Deck -->
+    <mxCell id="e1" value="«uses»" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#666666;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="cat_title" target="deck_title" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- memory_cat_list  - - uses - ->  Memory_Renderer -->
+    <mxCell id="e2" value="«uses»" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#666666;fontSize=11;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="cat_title" target="rend_title" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Memory_Deck  ◆────>  Memory_Card  (kompozíció, 0..*) -->
+    <mxCell id="e3" value="creates / owns&#xa;0..*" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;startArrow=ERmandOne;startFill=1;strokeColor=#6c8ebf;fontSize=11;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="deck_title" target="card_title" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Memory_Renderer  - - creates - ->  Memory_Card  (függőség) -->
+    <mxCell id="e4" value="creates 0..*" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#d6b656;fontSize=11;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" source="rend_title" target="card_title" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="940" y="240"/>
+          <mxPoint x="180" y="240"/>
+          <mxPoint x="180" y="560"/>
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- Memory_Deck  - - - ->  HTMLElement -->
+    <mxCell id="e5" value="parent_element" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#b85450;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="deck_methods" target="html_el" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <!-- Memory_Card  - - - ->  HTMLElement -->
+    <mxCell id="e6" value="parent_element" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#b85450;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="card_methods" target="html_el" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>

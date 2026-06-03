@@ -9,6 +9,7 @@ import Memory_Card from "./Memory_Card.js";
  *  - kattintás-esemény kezeléséért (event listener)
  *  - páregyezés ellenőrzéséért
  *  - győzelem detektálásáért
+ *  - játék újraindításáért
  */
 export default class Memory_Deck {
   /** @type {Memory_Card[]} Memory_Card példányok tömbje */
@@ -26,15 +27,24 @@ export default class Memory_Deck {
   /** @type {number} Az összes pár száma (a lista.length alapján) */
   #total_pairs = 0;
 
+  /** @type {Array<{name: string, url: string}>} Az eredeti kártyalista – újraindításhoz szükséges */
+  #lista = [];
+
+  /** @type {HTMLElement|null} Az indító gomb – győzelem után visszajelenik */
+  #start_button = null;
+
   /**
    * Létrehozza a paklit: megkeveri a párokat, példányosítja a kártyákat,
    * és feliratkozik minden kártya kattintás-eseményére.
    *
-   * @param {Array<{name: string, img: string}>} lista          – a memory_cat_list tömb; minden elem egy kártyapár alapadata
+   * @param {Array<{name: string, url: string}>} lista          – a memory_cat_list tömb; minden elem egy kártyapár alapadata
    * @param {HTMLElement}                        parent_element – a #memory_game konténer, ahová a kártyák és a győzelem-banner kerülnek
+   * @param {HTMLElement|null}                   start_button   – az indító gomb elem, amelyet győzelem után visszahozunk (opcionális)
    */
-  constructor(lista, parent_element) {
+  constructor(lista, parent_element, start_button = null) {
     this.parent_element = parent_element;
+    this.#lista = lista;
+    this.#start_button = start_button;
     this.#total_pairs = lista.length;
     this.#build_deck(lista);
   }
@@ -46,27 +56,22 @@ export default class Memory_Deck {
    * megkeveri őket, majd létrehozza a {@link Memory_Card} példányokat
    * és csatolja a kattintás-eseménykezelőt.
    *
-   * @param {Array<{name: string, img: string}>} lista – a memory_cat_list tömb
+   * @param {Array<{name: string, url: string}>} lista – a memory_cat_list tömb
    * @returns {void}
    */
   #build_deck(lista) {
-    // Minden elemből két példány → megkeverjük
     const pairs = [...lista, ...lista];
     this.#shuffle(pairs);
 
-    // Kártyák létrehozása és event listener csatolása
     pairs.forEach((obj, index) => {
       const card = new Memory_Card(obj, index, this.parent_element);
-
       card.element.addEventListener("click", () => this.#onCardClick(card));
-
       this.#cards.push(card);
     });
   }
 
   /**
    * Fisher–Yates keverő – helyben (in-place) véletlenszerűsíti a tömböt.
-   * Időkomplexitás: O(n).
    *
    * @param {Array<*>} arr – a megkeverendő tömb (módosítja az eredetit)
    * @returns {void}
@@ -83,14 +88,6 @@ export default class Memory_Deck {
   /**
    * Kattintás-esemény kezelője egyetlen kártyára.
    *
-   * Eldobja a kattintást, ha:
-   *  - a játék le van zárva (`#locked === true`, azaz animáció fut)
-   *  - a kártya már fel van fordítva (`card.is_flipped === true`)
-   *  - a kártya már párosítva van (`card.is_matched === true`)
-   *
-   * Ha a kattintás érvényes, felfordítja a kártyát, és ha már két kártya
-   * van felfordítva, meghívja az egyezésvizsgálatot.
-   *
    * @param {Memory_Card} card – a megkattintott kártya példánya
    * @returns {void}
    */
@@ -102,7 +99,6 @@ export default class Memory_Deck {
     card.flip();
     this.#flipped.push(card);
 
-    // Ha már két kártya van felfordítva → egyezés vizsgálata
     if (this.#flipped.length === 2) {
       this.#check_match();
     }
@@ -111,17 +107,12 @@ export default class Memory_Deck {
   // ─── Privát: játéklogika ──────────────────────────────────────────────────
 
   /**
-   * Megvizsgálja, hogy a két felfordított kártya egyezik-e (`name` tulajdonság alapján).
-   *
-   * - **Egyezés esetén:** mindkét kártyát párosítottnak jelöli, növeli a számlálót,
-   *   feloldja a zárolást, majd ellenőrzi a győzelmi feltételt.
-   * - **Nem egyezés esetén:** 1000 ms után visszafordítja a kártyákat,
-   *   törli a `#flipped` tömböt és feloldja a zárolást.
+   * Megvizsgálja, hogy a két felfordított kártya egyezik-e.
    *
    * @returns {void}
    */
   #check_match() {
-    this.#locked = true; // blokkolja a további kattintásokat
+    this.#locked = true;
     const [a, b] = this.#flipped;
 
     if (a.name === b.name) {
@@ -145,22 +136,65 @@ export default class Memory_Deck {
   }
 
   /**
-   * Győzelem-kezelő: 400 ms késleltetéssel egy Bootstrap alert bannert
-   * fűz a `parent_element` konténer végéhez.
-   *
-   * A késleltetés az utolsó párosítás CSS-animációjának befejezését várja meg,
-   * hogy a banner ne jelenjen meg az animáció felett.
+   * Győzelem-kezelő: törli a kártyákat, gratulációs bannert és
+   * „Új játék" gombot jelenít meg, az indító gombot elrejti.
    *
    * @returns {void}
    */
   #on_win() {
     setTimeout(() => {
-      // Győzelem banner a konténerbe
+      // 1. Kártyák törlése
+      this.parent_element.innerHTML = "";
+
+      // 2. Gratulációs banner
       const banner = document.createElement("div");
-      banner.className =
-        "col-12 alert alert-success text-center fs-4 fw-bold mt-3";
+      banner.className = "col-12 alert alert-success text-center fs-4 fw-bold mt-3";
       banner.textContent = "🎉 Gratulálok! Megnyerted a játékot!";
       this.parent_element.appendChild(banner);
+
+      // 3. Újraindító gomb
+      const restart_wrapper = document.createElement("div");
+      restart_wrapper.className = "col-12 text-center mt-3";
+
+      const restart_btn = document.createElement("button");
+      restart_btn.className = "btn btn-primary btn-lg";
+      restart_btn.textContent = "🔄 Új játék";
+      restart_btn.addEventListener("click", () => this.#reset());
+
+      restart_wrapper.appendChild(restart_btn);
+      this.parent_element.appendChild(restart_wrapper);
+
+      // 4. Indító gomb elrejtése
+      if (this.#start_button) {
+        this.#start_button.classList.add("d-none");
+      }
     }, 400);
+  }
+
+  /**
+   * Visszaállítja a játékot kezdeti állapotba:
+   * törli a konténert, nullázza az állapotot, újraépíti a paklit,
+   * és visszahozza az indító gombot.
+   *
+   * @returns {void}
+   */
+  #reset() {
+    // Állapot nullázása
+    this.#cards = [];
+    this.#flipped = [];
+    this.#locked = false;
+    this.#matched_pairs = 0;
+    this.#total_pairs = this.#lista.length;
+
+    // Konténer ürítése
+    this.parent_element.innerHTML = "";
+
+    // Indító gomb visszahozása
+    if (this.#start_button) {
+      this.#start_button.classList.remove("d-none");
+    }
+
+    // Pakli újraépítése
+    this.#build_deck(this.#lista);
   }
 }
