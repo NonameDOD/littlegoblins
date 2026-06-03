@@ -19,7 +19,8 @@ const galleryContainer = document.getElementById("gallery");
 const memoryContainer = document.getElementById("memory_game");
 
 /** @type {HTMLButtonElement} A memóriajátékot indító gomb a `#memory_game` konténeren belül */
-const startBtn = memoryContainer.querySelector("button");
+const memory_wrapper = document.getElementsByClassName("memory-wrapper")
+const startBtn = memory_wrapper[0].querySelector("button");
 
 // Galéria – változatlan
 new Gallery(gallery_cat_list, galleryContainer);

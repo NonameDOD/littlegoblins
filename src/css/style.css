@@ -7,48 +7,126 @@ body {
   background-color: #def3fd;
 }
 
-article {
+article,
+.gallery-wrapper,
+.memory-wrapper {
   border: 5px dotted rgb(223, 69, 161);
   background-color: rgb(255, 209, 220);
   text-align: justify;
-  padding: 5px;
+  padding: 15px;
   margin: 10px;
   width: 100%;
+  overflow: hidden;
 }
 
 header {
   text-align: center;
   border: 3px dotted pink;
   background-color: #e9aaca;
+  padding: 8px;
 }
 
-nav {
-  border: 5px dotted pink;
+/* Facebook gomb a headerben */
+.btn-facebook {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #1877f2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.btn-facebook:hover {
+  background-color: #1464d8;
+  color: #fff;
+}
+
+/* Fix bal oldali navbar, teljes magasság, tartalom középen */
+.side-nav {
+  border-right: 5px dotted pink;
+  background-color: #f8f9fa;
+  padding: 12px;
   position: fixed;
-  
+  left: 0;
+  top: 0;
+  width: 120px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
 }
 
-#gallery{
-  margin-top: 5px;
+/* Navbar gombok */
+.nav-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: #e9aaca;
+  color: #3a003a;
+  border: 2px solid rgb(223, 69, 161);
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
 }
 
-@function shade-color($color, $percentage) {
-    @return mix(black, $color, $percentage);
+.nav-btn:hover {
+  background-color: rgb(223, 69, 161);
+  color: #fff;
 }
+
+/* Placeholder hogy a tartalom ne csússzon a fix nav alá */
+.nav-placeholder {
+  width: 120px;
+  flex-shrink: 0;
+}
+
+/* Logo a fejlécben */
+.logo-img {
+  height: 50px;
+  width: auto;
+}
+
+/* Cikk képe jobbra igazítva */
+.article-img {
+  width: 30%;
+  float: right;
+  margin: 0 0 12px 16px;
+  display: block;
+}
+
 :root {
-    --bd-pink: #e9aaca;
-    --bd-pink-rgb: 255, 105, 180;
+  --bd-pink: #e9aaca;
+  --bd-pink-rgb: 255, 105, 180;
 }
+
 .btn-pink {
-    --bs-btn-font-weight: 600;
-    --bs-btn-bg: var(--bd-pink);
-    --bs-btn-border-color: var(--bd-pink);
-    --bs-btn-border-radius: .5rem;
-    --bs-btn-hover-color: var(--bs-black);
-    --bs-btn-hover-bg: #{shade-color($bd-pink, 10%)};
-    --bs-btn-hover-border-color: #{shade-color($bd-pink, 10%)};
-    --bs-btn-focus-shadow-rgb: var(--bd-pink-rgb);
-    --bs-btn-active-color: var(--bs-btn-hover-color);
-    --bs-btn-active-bg: #{shade-color($bd-pink, 20%)};
-    --bs-btn-active-border-color: #{shade-color($bd-pink, 20%)};
+  --bs-btn-font-weight: 600;
+  --bs-btn-bg: var(--bd-pink);
+  --bs-btn-border-color: var(--bd-pink);
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-color: var(--bs-black);
+  --bs-btn-focus-shadow-rgb: var(--bd-pink-rgb);
+}
+
+/* Fade animáció oldalváltáskor */
+body {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+body.fade-in {
+  opacity: 1;
+}
+
+body.fade-out {
+  opacity: 0;
 }
