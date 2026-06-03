@@ -5,7 +5,6 @@
  *  - a kártya HTML-struktúrájának generálásáért
  *  - a kártya szülő konténerbe fűzéséért (`insertAdjacentHTML`)
  *  - dorombolás lejátszása ha képre viszik az egeret
- *  - carousel megnyitása kattintáskor a saját indexénél
  *
  */
 export default class Cat_Card {
@@ -15,34 +14,26 @@ export default class Cat_Card {
   /** @type {number} A kártya sorszáma a listában (0-tól indexelt) */
   #index = 0;
 
-  /** @type {import("./Carousel.js").default} A megosztott Carousel példány */
-  #carousel = null;
-
   // Megosztott Audio példány az összes kártyához (nem hozunk létre minden hover-re újat)
   static #sound = new Audio("../../assets/sounds/dorombolas.mp3");
 
-  /**
+   /**
    * Létrehoz egy új kártyapéldányt és azonnal ki is rajzolja a szülő konténerbe.
    *
    * @param {{name: string, url: string}} obj            – a kártya adatobjektuma (`name`: felirat, `url`: képforrás)
    * @param {number}                      index          – a kártya sorszáma a forráslistában
    * @param {HTMLElement}                 parent_element – a konténer, ahová a kártya kerül
-   * @param {import("./Carousel.js").default} carousel  – a megosztott Carousel példány
    */
-  constructor(obj = { name, url }, index, parent_element, carousel) {
+  constructor(obj = { name, url }, index, parent_element) {
     this.parent_element = parent_element;
     this.#index = index;
     this.#obj = obj;
-    this.#carousel = carousel;
     this.render();
   }
 
   /**
    * Legenerálja a kártya Bootstrap-kompatibilis HTML-struktúráját
    * és `insertAdjacentHTML("beforeend", ...)` segítségével a szülő végéhez fűzi.
-   *
-   * Kattintásra megnyitja a Carousel-t a saját indexénél.
-   * Egér ráhúzásakor dorombolást játszik le.
    *
    * Generált struktúra:
    * ```
@@ -55,12 +46,13 @@ export default class Cat_Card {
    *
    * @returns {void}
    */
+
   render() {
     const id = `cat-card-${this.#index}`;
 
     const code = `
       <div class="col-12 col-sm-6 col-md-4 mb-4" id="${id}">
-        <div class="card h-100" style="cursor:pointer;">
+        <div class="card h-100">
           <img class="card-img-top" src="${this.#obj.url}" alt="${this.#obj.name}" style="width:100%;max-height:220px;object-fit:contain;background:#f8f9fa;">
           <div class="card-body d-flex align-items-center justify-content-center">
             <p class="card-text text-center mb-0">${this.#obj.name}</p>
@@ -70,19 +62,11 @@ export default class Cat_Card {
 
     this.parent_element.insertAdjacentHTML("beforeend", code);
 
-    const card = this.parent_element.querySelector(`#${id} .card`);
-
     // Hang lejátszása egér ráhúzásakor
+    const card = this.parent_element.querySelector(`#${id} .card`);
     card.addEventListener("mouseenter", () => {
       Cat_Card.#sound.currentTime = 0;
       Cat_Card.#sound.play().catch(() => {});
-    });
-
-    // Carousel megnyitása kattintáskor, a saját indexénél
-    card.addEventListener("click", () => {
-      if (this.#carousel) {
-        this.#carousel.open(this.#index);
-      }
     });
   }
 }
