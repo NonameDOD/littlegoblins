@@ -2,6 +2,8 @@ mod l0_fingerprint;
 mod l1_fingerprint;
 mod tests;
 
+use std::os::windows::fs::FileTypeExt;
+
 use crate::knowledge_base::knowledge::l1_fingerprint::L1Fingerprint;
 // --- Knowledge
 // -[~] Knowledge
@@ -19,7 +21,8 @@ impl Knowledge {
 
     fn new(text: String) -> Self {
         let mut pre_fingerprint: Vec<L1Fingerprint> = Vec::new();
-        let words: Vec<&str> = text.split(" ").collect();
+        let l_text: String = text.clone().to_lowercase();
+        let words: Vec<&str> = l_text.split(" ").collect();
         for word in words {
             if word.len() > 2 {
                 let l1: L1Fingerprint = L1Fingerprint::new(word);
@@ -34,6 +37,7 @@ impl Knowledge {
             text,
         }
     }
+
     fn has(cmp: &L1Fingerprint, sieve: &[L1Fingerprint]) -> Option<usize> {
         let mut i: usize = 0;
         while i < sieve.len() && (Knowledge::NEW_THRESHOLD >= sieve[i].evaluat(cmp)) {

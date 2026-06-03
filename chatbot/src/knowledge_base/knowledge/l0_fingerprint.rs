@@ -18,10 +18,10 @@ impl L0Fingerprint {
         }
     }
 
-    pub fn has(char: char, sieve: &str) -> bool {
+    pub fn has(char: &char, sieve: &str) -> bool {
         let mut i: usize = 0;
-        let sieve: Vec<_> = sieve.chars().collect();
-        while i < sieve.len() && (char != sieve[i]) {
+        let sieve: Box<[char]> = sieve.chars().collect();
+        while i < sieve.len() && (*char != sieve[i]) {
             i += 1;
         }
         i < sieve.len()
